@@ -1,4 +1,4 @@
-﻿package com.uniremington.electrodomesticos.vo;
+package com.uniremington.electrodomesticos.model.vo;
 
 public class DetalleDevolucionVO {
 
@@ -92,4 +92,3 @@ public class DetalleDevolucionVO {
         this.accion = accion;
     }
 }
-

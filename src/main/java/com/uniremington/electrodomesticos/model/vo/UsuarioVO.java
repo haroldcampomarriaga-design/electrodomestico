@@ -1,4 +1,4 @@
-﻿package com.uniremington.electrodomesticos.vo;
+package com.uniremington.electrodomesticos.model.vo;
 
 import java.time.LocalDateTime;
 
@@ -103,4 +103,3 @@ public class UsuarioVO {
         this.fechaCreacion = fechaCreacion;
     }
 }
-

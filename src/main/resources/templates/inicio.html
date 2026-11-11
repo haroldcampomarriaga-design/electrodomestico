@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <title th:text="${title} + ' | Electro'">Panel de control | Electro</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <div th:replace="~{fragments/navigation :: sidebar(${activePath})}"></div>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="breadcrumb"><span>Electro</span><span class="breadcrumb-separator">/</span><strong>Resumen</strong></div>
+            <span class="topbar-tag"><span class="status-dot"></span> Panel administrativo</span>
+        </header>
+        <section class="page-content dashboard">
+            <div class="welcome-row">
+                <div>
+                    <span class="eyebrow">GESTIÓN COMERCIAL</span>
+                    <h1>Todo en un solo lugar.</h1>
+                    <p class="page-description">Administra el catálogo, las operaciones y el inventario de tu negocio.</p>
+                </div>
+                <div class="welcome-art" aria-hidden="true"><span>⌂</span><i></i><b></b></div>
+            </div>
+            <div class="section-heading">
+                <div><h2>Módulos</h2><p>Elige una sección para comenzar a trabajar.</p></div>
+                <span class="module-count" th:text="${#lists.size(modules)} + ' módulos'">13 módulos</span>
+            </div>
+            <div class="module-grid">
+                <a class="module-card" th:each="module : ${modules}" th:href="${module.path}">
+                    <span class="module-icon" th:text="${module.initials}">PR</span>
+                    <span class="module-copy"><strong th:text="${module.name}">Productos</strong><small th:text="${module.description}">Catálogo</small></span>
+                    <span class="module-arrow" aria-hidden="true">↗</span>
+                </a>
+            </div>
+            <footer class="page-footer"><span>Electro · Gestión de electrodomésticos</span><span>Java 17 · Spring Boot</span></footer>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' | Electro'">Formulario | Electro</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <div th:replace="~{fragments/navigation :: sidebar(${activePath})}"></div>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="breadcrumb"><a href="/">Electro</a><span class="breadcrumb-separator">/</span><a th:href="${basePath}" th:text="${title}">Registros</a><span class="breadcrumb-separator">/</span><strong>Formulario</strong></div>
+            <span class="topbar-tag"><span class="status-dot"></span> Panel administrativo</span>
+        </header>
+        <section class="page-content">
+            <div class="page-title-row">
+                <div>
+                    <span class="eyebrow">GESTIÓN DE DATOS</span>
+                    <h1 th:text="${title}">Formulario</h1>
+                    <p>Completa la información y guarda los cambios.</p>
+                </div>
+            </div>
+            <div class="panel form-panel">
+                <form method="post" th:attr="action=${action}">
+                    <div class="form-grid">
+                        <div class="form-field"
+                             th:each="field : ${fields}"
+                             th:classappend="${field.name == 'descripcion' or field.name == 'observaciones' or field.name == 'direccion' ? ' form-field-wide' : ''}">
+                            <label th:for="${field.name}" th:text="${field.label}">Campo</label>
+                            <select th:if="${field.type == 'select'}" th:id="${field.name}" th:name="${field.name}">
+                                <option value="">Selecciona una opción</option>
+                                <option th:each="option : ${field.options}" th:value="${option}" th:text="${option}"
+                                        th:selected="${option == field.value}"></option>
+                            </select>
+                            <textarea th:if="${field.name == 'descripcion' or field.name == 'observaciones' or field.name == 'direccion'}"
+                                      th:id="${field.name}" th:name="${field.name}" th:text="${field.value}"></textarea>
+                            <input th:if="${field.type != 'select' and field.name != 'descripcion' and field.name != 'observaciones' and field.name != 'direccion'}"
+                                   th:id="${field.name}" th:name="${field.name}" th:type="${field.type}"
+                                   th:value="${field.value}" th:attr="step=${field.step}"
+                                   th:required="${field.name == 'password' and action == basePath}">
+                            <small class="form-help" th:if="${field.name == 'password'}">La contraseña no se muestra en este formulario. Déjala vacía para conservar la actual.</small>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Guardar cambios</button>
+                        <a class="button button-secondary" th:href="${basePath}">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+            <footer class="page-footer"><a th:href="${basePath}">← Volver a <span th:text="${title}">registros</span></a><span>Electro · Gestión de electrodomésticos</span></footer>
+        </section>
+    </main>
+</div>
+</body>
+</html>

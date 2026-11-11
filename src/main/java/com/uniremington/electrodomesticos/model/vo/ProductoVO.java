@@ -1,4 +1,4 @@
-﻿package com.uniremington.electrodomesticos.vo;
+package com.uniremington.electrodomesticos.model.vo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -155,4 +155,3 @@ public class ProductoVO {
         this.fechaRegistro = fechaRegistro;
     }
 }
-

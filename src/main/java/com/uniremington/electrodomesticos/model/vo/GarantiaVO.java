@@ -1,4 +1,4 @@
-﻿package com.uniremington.electrodomesticos.vo;
+package com.uniremington.electrodomesticos.model.vo;
 
 import java.time.LocalDate;
 
@@ -83,4 +83,3 @@ public class GarantiaVO {
         this.observaciones = observaciones;
     }
 }
-

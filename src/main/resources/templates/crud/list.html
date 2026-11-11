@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' | Electro'">Registros | Electro</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <div th:replace="~{fragments/navigation :: sidebar(${activePath})}"></div>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="breadcrumb"><a href="/">Electro</a><span class="breadcrumb-separator">/</span><strong th:text="${title}">Registros</strong></div>
+            <span class="topbar-tag"><span class="status-dot"></span> Panel administrativo</span>
+        </header>
+        <section class="page-content">
+            <div class="page-title-row">
+                <div>
+                    <span class="eyebrow">GESTIÓN DE DATOS</span>
+                    <h1 th:text="${title}">Registros</h1>
+                    <p>Consulta y administra la información de esta sección.</p>
+                </div>
+                <a class="button" th:href="${basePath + '/nuevo'}"><span aria-hidden="true">＋</span> Crear registro</a>
+            </div>
+            <div class="panel">
+                <div class="table-wrap" th:if="${not #lists.isEmpty(rows)}">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th th:each="column : ${columns}" th:text="${column.label}">Campo</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="row : ${rows}">
+                            <td th:each="column : ${columns}" th:text="${row[column.name]}"></td>
+                            <td>
+                                <div class="table-actions">
+                                    <a th:href="${basePath + '/' + row['_id'] + '/editar'}">Editar</a>
+                                    <form method="post" th:attr="action=${basePath + '/' + row['_id'] + '/eliminar'}">
+                                        <button class="button-danger" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="empty-state" th:if="${#lists.isEmpty(rows)}">
+                    <strong>Aún no hay registros</strong>
+                    <span>Crea un registro para comenzar a gestionar esta sección.</span>
+                </div>
+            </div>
+            <footer class="page-footer"><a href="/">← Volver al resumen</a><span>Electro · Gestión de electrodomésticos</span></footer>
+        </section>
+    </main>
+</div>
+</body>
+</html>

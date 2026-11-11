@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside class="sidebar" th:fragment="sidebar(activePath)">
+    <a class="brand" href="/" aria-label="Electrodomésticos, inicio">
+        <span class="brand-mark">E</span>
+        <span class="brand-copy"><strong>electro</strong><small>GESTIÓN COMERCIAL</small></span>
+    </a>
+    <nav class="navigation" aria-label="Navegación principal">
+        <span class="nav-label">ESPACIO DE TRABAJO</span>
+        <a class="nav-link" th:classappend="${activePath == '/' ? ' active' : ''}" href="/">
+            <span class="nav-icon">⌂</span> Resumen
+        </a>
+        <span class="nav-label nav-label-spaced">OPERACIÓN</span>
+        <a class="nav-link" th:classappend="${activePath == '/productos' ? ' active' : ''}" href="/productos"><span class="nav-icon">▦</span> Productos</a>
+        <a class="nav-link" th:classappend="${activePath == '/clientes' ? ' active' : ''}" href="/clientes"><span class="nav-icon">♙</span> Clientes</a>
+        <a class="nav-link" th:classappend="${activePath == '/proveedores' ? ' active' : ''}" href="/proveedores"><span class="nav-icon">▤</span> Proveedores</a>
+        <a class="nav-link" th:classappend="${activePath == '/ventas' ? ' active' : ''}" href="/ventas"><span class="nav-icon">↗</span> Ventas</a>
+        <a class="nav-link" th:classappend="${activePath == '/compras' ? ' active' : ''}" href="/compras"><span class="nav-icon">↙</span> Compras</a>
+        <a class="nav-link" th:classappend="${activePath == '/devoluciones' ? ' active' : ''}" href="/devoluciones"><span class="nav-icon">↩</span> Devoluciones</a>
+        <span class="nav-label nav-label-spaced">CONTROL</span>
+        <a class="nav-link" th:classappend="${activePath == '/series' ? ' active' : ''}" href="/series"><span class="nav-icon">◎</span> Series</a>
+        <a class="nav-link" th:classappend="${activePath == '/garantias' ? ' active' : ''}" href="/garantias"><span class="nav-icon">◇</span> Garantías</a>
+        <a class="nav-link" th:classappend="${activePath == '/movimientos-inventario' ? ' active' : ''}" href="/movimientos-inventario"><span class="nav-icon">⇄</span> Movimientos</a>
+        <a class="nav-link" th:classappend="${activePath == '/usuarios' ? ' active' : ''}" href="/usuarios"><span class="nav-icon">♧</span> Usuarios</a>
+        <details class="nav-details">
+            <summary><span class="nav-icon">☷</span> Detalles de operación</summary>
+            <a class="nav-sub-link" href="/detalles-venta">Detalle de ventas</a>
+            <a class="nav-sub-link" href="/detalles-compra">Detalle de compras</a>
+            <a class="nav-sub-link" href="/detalles-devolucion">Detalle de devoluciones</a>
+        </details>
+    </nav>
+    <div class="sidebar-footer">
+        <span class="status-dot"></span>
+        <span><strong>Sistema de inventario</strong><small>Panel administrativo</small></span>
+    </div>
+</aside>
+</body>
+</html>

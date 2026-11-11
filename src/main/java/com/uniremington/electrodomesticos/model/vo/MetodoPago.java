@@ -1,4 +1,4 @@
-package com.uniremington.electrodomesticos.vo;
+package com.uniremington.electrodomesticos.model.vo;
 
 public enum MetodoPago {
     EFECTIVO,
